@@ -1,0 +1,9 @@
+package com.otr.tea.dao;
+
+import com.otr.tea.po.User;
+
+public interface UserDao {
+	public User findUserById(int id) throws Exception{
+	
+}
+}

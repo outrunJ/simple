@@ -1,0 +1,8 @@
+driver=com.mysql.jdbc.Driver
+url=jdbc:mysql://localhost:3306/tmp
+username:root
+password:asdf
+initialSize:0
+maxActive:20
+maxIdle:10
+minIdle:5

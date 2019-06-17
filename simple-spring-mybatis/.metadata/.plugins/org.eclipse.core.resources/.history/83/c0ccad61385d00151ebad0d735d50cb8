@@ -1,0 +1,5 @@
+package com.otr.tea.mapper;
+
+public class UserMapper {
+
+}

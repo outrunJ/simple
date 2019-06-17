@@ -1,0 +1,15 @@
+package com.otr.tea.dao;
+
+import com.otr.tea.po.User;
+
+
+public class UserDaoImpl implements UserDao{
+	private SqlSessionFactory sqlSessionFactory;
+
+	@Override
+	public User findUserById(int id) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

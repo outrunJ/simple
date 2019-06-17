@@ -1,0 +1,7 @@
+package com.otr.tea.dao;
+
+import junit.framework.TestCase;
+
+public class UserDaoImplTest extends TestCase {
+
+}

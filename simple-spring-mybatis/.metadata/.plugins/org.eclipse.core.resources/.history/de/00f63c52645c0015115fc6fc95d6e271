@@ -1,0 +1,6 @@
+package com.otr.tea.controller;
+
+@Controller
+public class UserController {
+
+}

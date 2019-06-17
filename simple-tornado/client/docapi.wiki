@@ -1,0 +1,108 @@
+=== http请求方式 ===
+* get - 得到数据
+* post - 添加数据
+* put - 修改数据
+* delete - 删除数据
+
+=== code分类 ===
+
+{|
+|'''http status'''
+|'''code'''
+|'''desc'''
+|-
+| 200
+| 0000
+| 成功
+|}
+
+=== json返回数据模型 ===
+<source>
+{
+    code: string        // 必返回
+    msg: string         // 可选, 消息
+    data: string        // 可选, 数据
+}
+</source>
+
+=== user module ===
+
+==== 0001 注册 ====
+* uri: /user/register
+* method: post
+* parameters:
+** username: string
+** pwd: string
+** pwd2: string
+* response json:
+<source>
+{
+    msg: string,
+}
+</source>
+
+==== 0002 登录 ====
+* 注: 登录后把token放入名为'x-outrun-user-token'的header中
+* uri: /user/login
+* method: post
+* parameters:
+** username: string
+** pwd: string
+* response json:
+<source>
+{
+    msg: string,
+    data: {
+        token: string
+    },
+}
+</source>
+
+
+=== meeting module ===
+
+==== 1001 room添加 ====
+* uri: /meeting/room
+* method: post
+* parameters:
+** name: string
+* response json:
+<source>
+{
+    msg: string,
+}
+</source>
+
+==== 1002 room查看 ====
+* uri: /meeting/room
+* method: get
+* parameters:
+* response json:
+<source>
+{
+    data: [{
+        id: int,
+        name: string,
+    }]
+}
+</source>
+
+==== 1003 meeting添加 ====
+* 注: 需登录
+* uri: /meeting/meeting
+* method: post
+* parameters:
+** room_id: int
+** begin_time: string   // 如09:01:02
+** end_time: string
+** day: string  // 如 2016-02-02
+* response json:
+<source>
+{
+    data: [{
+        id: int,
+        name: string,
+    }]
+}
+</source>
+

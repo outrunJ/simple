@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<!--  -->
+	<properties resource="db.properties">
+		<!-- 建议不使用property定义属性，并且resource中的属性要特殊，否则可能会被mapper.xml中的${}误用	 -->
+		<!-- property name="" value=""/-->
+	</properties>
+	<!-- settings>
+		<setting name="" value=""/>
+	</settings-->
+	<typeAliases>
+		<!-- 针对单个别名定义 -->
+		<!-- typeAlias type="com.otr.tea.po.User" alias="user"/-->
+		<!-- 别名是包中的类名，首字母大小写都可以 -->
+		<package name="com.otr.tea.po"/>
+	</typeAliases>
+	<environments default="development">
+		<environment id="development">
+			<!-- 使用jdbc事务管理，事务控制由mybatis -->
+			<transactionManager type="JDBC"/>
+			<dataSource type="POOLED">
+				<property name="driver" value="${jdbc.driver}"/>
+				<property name="url" value="${jdbc.url}"/>
+				<property name="username" value="${jdbc.username}"/>
+				<property name="password" value="${jdbc.password}"/>
+			</dataSource>
+		</environment>
+	</environments>
+	<mappers>
+		<!-- url是全路径名 -->
+		<mapper resource="sqlmap/User.xml"/>
+		<mapper resource="mapper/UserMapper.xml"/>
+		<!-- 通过mapper接口加载映射文件 
+			mapper类名和mapper.xml名称一致且在一个目录
+		-->
+		<mapper class=""/>
+	</mappers>
+</configuration>

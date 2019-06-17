@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis-org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespce来隔离sql, 在mapper代理中有重要作用 -->
+<mapper namespace="test">
+	<!-- id是mapped statement中的标识id 
+		parameterType是基本类型时, #{}中的名称任意
+		resultType是单条记录映射成的java对象
+	-->
+	<select id="selectUserById" parameterType="int" resultType="com.otr.tea.po.User">
+		select * from user where id = #{id}
+	</select>
+	<!-- 
+		${}拼接字符串, 会引起sql注入问题
+		${value}接收简单类型时，只能名称为value
+	 -->
+	<select id="findUserByName" parameterType="java.lang.String" resultType="com.otr.tea.po.User">
+		select * from user where name like '%${value}%'
+	</select>
+	<!-- #{}指定pojo的属性名, mybatsi通过OGNL获取对象的属性值 -->
+	<insert id="insetUser" parameterType="com.otr.tea.po.User">
+		<!-- 在insert 执行后, 调用mysql的函数查自增主键, 注入到了User对象中 -->
+		<selectKey keyProperty="id" order="AFTER">
+			select LAST_INSERT_ID()
+		</selectKey>
+		<!-- 在insert前, 调用mysql的uuid()生成主键 注入到了User对象中-->
+		<selectKey keyProperty="id" order="BEFORE" resultType="java.lang.String">
+			select uuid()
+		</selectKey>
+			
+		insert into user(id, username) values (#{id}, #{username})
+	</insert>
+</mapper>

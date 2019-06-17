@@ -1,0 +1,53 @@
+{
+  "name": "zlycare-web",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "start": "node app.js",
+    "test-api": "NODE_ENV=UT mocha test/api*/*.js",
+    "test-lib": "NODE_ENV=UT mocha test/lib/*.js",
+    "test": "NODE_ENV=UT mocha -R spec test/**/*.js",
+    "test-cov": "NODE_ENV=UT istanbul cover _mocha -- -u exports -R spec  test/**/*.js",
+    "test-harm": "node --harmony node_modules/istanbul/lib/cli.js cover _mocha -- -u exports -R spec"
+  },
+  "dependencies": {
+    "async": "2.0.0",
+    "connect": "2.15.0",
+    "cron": "1.0.4",
+    "ejs": "1.0.0",
+    "express": "4.0.0",
+    "express-xml-bodyparser": "0.0.7",
+    "fibers": "^1.0.9",
+    "https": "^1.0.0",
+    "images": "^3.0.0",
+    "jpush-sdk": "*",
+    "js-base64": "^2.1.7",
+    "lodash": "3.10.1",
+    "log4js": "*",
+    "moment": "*",
+    "mongodb": "1.4.0",
+    "mongoose": "4.5.0",
+    "mpromise": "0.5.1",
+    "multiparty": "3.2.4",
+    "mysql": "2.5.3",
+    "passport": "*",
+    "passport-local": "*",
+    "pinyin": "2.6.2",
+    "promise": "6.0.0",
+    "q": "1.0.1",
+    "qiniu": "*",
+    "qr-image": "3.1.0",
+    "querystring": "^0.2.0",
+    "request": "^2.75.0",
+    "require-dir": "0.3.0",
+    "underscore": "^1.8.3",
+    "xml": "^1.0.1",
+    "xml2js": "^0.4.6"
+  },
+  "devDependencies": {
+    "mocha": "^2.2.5",
+    "supertest": "^1.2.0",
+    "chai": "^3.5.0",
+    "istanbul": "^0.4.2"
+  }
+}

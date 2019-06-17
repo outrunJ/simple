@@ -1,0 +1,5 @@
+package com.otr.tea.dao;
+
+public class UserDao {
+
+}

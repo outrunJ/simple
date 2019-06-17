@@ -1,0 +1,13 @@
+package com.otr.tea.po;
+
+/**
+ * Vo 指视图层对象, Po指持久层对象
+ * 
+ * @author outrun
+ *
+ */
+public class UserQueryVo {
+	
+	private UserCustom userCustom;
+
+}

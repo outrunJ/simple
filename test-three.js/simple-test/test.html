@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        .outer {
+            background-color: #0000cc;
+            width: 500px;
+            height: 500px;
+        }
+
+        .inner {
+            background-color: #ff0000;
+            width: 100px;
+            height: 100px;
+            text-align: center;
+            line-height: 100px;
+        }
+
+        .pos {
+            position: absolute;
+            left: 200px;
+        }
+
+        .wrapper {
+            position: relative;
+        }
+    </style>
+</head>
+<body>
+<div class="outer">
+    <div class="inner ">1</div>
+    <div class="wrapper">
+        <div class="inner pos">2</div>
+        <div class="inner ">3</div>
+    </div>
+</div>
+</body>
+</html>

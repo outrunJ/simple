@@ -1,0 +1,4 @@
+npm install -g babel-cli
+cd src
+npm install babel-preset-react
+babel example.js --presets react --out-dir=../

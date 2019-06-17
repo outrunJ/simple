@@ -1,0 +1,8 @@
+package com.otr.tea.dao;
+
+import org.springframework.stereotype.Repository;
+
+@Repository
+public class UserDao {
+
+}

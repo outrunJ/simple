@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis-org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespce来隔离sql, 在mapper代理中有重要作用 -->
+<mapper namespace="com.otr.tea.mapper.UserMapper">
+
+	<!-- 定义sql片段 
+		一般针对单表来定义sql片段，这样可重用性高。
+		在sql片段中不要包含where,才好拼
+	-->
+	<sql id="query_user_where">
+		<if test="userCustom!=null">
+			<if test="userCustom.username!=null and userCustom.username!=''">
+				and user.username like '%${userCustom.username}%'
+			</if>
+		</if>
+	</sql>
+	<!-- 定义resultMap 
+		type: resultMap最终映射的java对象类型
+		id: 对resultMap的唯一标识
+	-->
+	<resultMap type="user" id="userResultMap">
+		<!-- id表示查询结果信中唯一标识
+			column是表中的字段名
+			property是pojo中的属性名
+		 -->
+		<id column="id_" property="id"/>
+		<result column="username_" property="username"/>
+	</resultMap>
+
+	<!-- id是mapped statement中的标识id parameterType是基本类型时, #{}中的名称任意 resultType是单条记录映射成的java对象 -->
+	<select id="findUserById" parameterType="int" resultType="user">
+		select * from user where id = #{id}
+	</select>
+	<!-- ${}拼接字符串, 会引起sql注入问题 ${value}接收简单类型时，只能名称为value -->
+	<select id="findUserByName" parameterType="java.lang.String"
+		resultType="user">
+		select * from user where name like '%${value}%'
+	</select>
+	
+	<!-- resultMap是定义的resultMap的id, 如果在其它mapper文件中，需要加namespace -->
+	<select id="findUserByIdResultMap" parameterType="int" resultMap="userResultMap">
+		select id id_, username username_ from user where id=#{value}
+	</select>
+	
+	<!-- where 会自动去and -->
+	<select id="findUserList" parameterType="com.otr.tea.po.UserQueryVo" resultType="com.otr.tea.po.UserCustom">
+		select * from user 
+		<where>
+			<include refid="query_user_where"></include>
+		</where>
+	</select>
+	
+	<!-- #{}指定pojo的属性名, mybatsi通过OGNL获取对象的属性值 -->
+	<insert id="insetUser" parameterType="user">
+		<!-- 在insert 执行后, 调用mysql的函数查自增主键, 注入到了User对象中 下面的sql语句中没有id -->
+		<selectKey keyProperty="id" order="AFTER">
+			select LAST_INSERT_ID()
+		</selectKey>
+		<!-- 在insert前, 调用mysql的uuid()生成主键 注入到了User对象中 oracle中用seq.nextval() 下面的sql语句中要有id 
+			> <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.String"> 
+			select uuid() </selectKey -->
+		insert into user(id, username) values (#{id}, #{username})
+	</insert>
+	<delete id="deleteUser" parameterType="java.lang.Integer">
+		delete from user where
+		id=#{id}
+	</delete>
+	<update id="updateUser" parameterType="user">
+		update user set
+		username=#{username} where id=#{id}
+	</update>
+</mapper>

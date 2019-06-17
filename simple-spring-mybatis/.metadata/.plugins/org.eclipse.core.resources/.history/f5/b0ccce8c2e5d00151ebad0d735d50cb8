@@ -1,0 +1,30 @@
+package com.otr.tea.dao;
+
+import java.io.InputStream;
+
+import junit.framework.TestCase;
+
+import org.apache.ibatis.io.Resources;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+import org.junit.Test;
+
+import com.otr.tea.po.User;
+
+public class UserDaoImplTest extends TestCase {
+
+	private SqlSessionFactory sqlSessionFactory;
+	protected void setUp() throws Exception {
+		InputStream is = Resources.getResourceAsStream("/SqlMapConfig.xml");
+		sqlSessionFactory = new SqlSessionFactoryBuilder().build(is);
+		
+	}
+
+	@Test
+	public void testFindUserById() throws Exception {
+		UserDao userDao = new UserDaoImpl();
+		User user = userDao.findUserById(1);
+		System.out.println(user);
+	}
+
+}

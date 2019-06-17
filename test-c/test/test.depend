@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1465285961 source:/home/outrun/basehome/codes/github/tests/c-test/test/main.c
+	<stdio.h>
+	<stdlib.h>
+
