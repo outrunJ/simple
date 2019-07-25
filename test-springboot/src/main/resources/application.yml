@@ -1,0 +1,29 @@
+server:
+  port: 8080
+#  servlet:
+#    context-path: /demo
+
+
+xxx: 1
+
+
+xx:
+  yy: 2
+
+spring:
+  devtools:
+    restart:
+      enabled: true
+      additional-paths: src/main/java
+  mvc:
+    view:
+      prefix: /WEB-INF/views/
+      suffix: .jsp
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/outrun?characterEncoding=UTF-8
+    username: root
+    password: asdf
+    driver-class-name: com.mysql.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
