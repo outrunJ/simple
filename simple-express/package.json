@@ -26,7 +26,7 @@
     "log4js": "*",
     "moment": "*",
     "mongodb": "1.4.0",
-    "mongoose": "4.5.0",
+    "mongoose": "5.7.7",
     "mpromise": "0.5.1",
     "multiparty": "3.2.4",
     "mysql": "2.5.3",
