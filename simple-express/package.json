@@ -22,7 +22,7 @@
     "images": "^3.0.0",
     "jpush-sdk": "*",
     "js-base64": "^2.1.7",
-    "lodash": "3.10.1",
+    "lodash": "4.17.19",
     "log4js": "*",
     "moment": "*",
     "mongodb": "1.4.0",
